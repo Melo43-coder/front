@@ -1,26 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="app-container">
+    <h1>Gerenciador de Tarefas</h1>
+    <AddTask @taskAdded="fetchTasks" />
+    <TaskList ref="taskList" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AddTask from './components/AddTask.vue';
+import TaskList from './components/TaskList.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    AddTask,
+    TaskList,
+  },
+  methods: {
+    fetchTasks() {
+      this.$refs.taskList.fetchTasks();
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+}
+
+h1 {
+  margin-bottom: 20px;
 }
 </style>
